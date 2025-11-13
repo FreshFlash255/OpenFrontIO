@@ -222,6 +222,8 @@
   },
   "public_lobby": {
     "join": "Join next Game",
+    "event_false": " - No Event",
+    "event_true": " - Special Event",
     "waiting": "players waiting",
     "teams_Duos": "Duos (teams of 2)",
     "teams_Trios": "Trios (teams of 3)",
