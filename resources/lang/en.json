@@ -278,9 +278,11 @@
     "bot": "Bot"
   },
   "game_starting_modal": {
-    "title": "Game is Starting...",
-    "credits": "Credits",
-    "code_license": "Code licensed under AGPL-3.0 (no warranty)"
+    "title": "BackFront",
+    "info_1": "Game is Starting...",
+    "info_2": "MainServer",
+    "credits_title": "Credits",
+    "credits": "Created by CHTriple & FreshFlash"
   },
   "difficulty": {
     "difficulty": "Difficulty",
