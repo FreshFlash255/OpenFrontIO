@@ -1,0 +1,4 @@
+Server.ts => IP/Port config - (src/server/Server.ts)
+Client.ts => Client Managing (basic) - (src/client/Client.ts)
+Version Title => The first lines in the index.html - (resources/version.txt)
+Languages => 
