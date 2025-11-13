@@ -21,6 +21,7 @@ export class FarmlandExecution implements Execution {
   }
 
   private setNextGoldInterval(): void {
+    if (!this.game) return;
     const min = this.game.config().farmlandGoldIntervalMin();
     const max = this.game.config().farmlandGoldIntervalMax();
     this.ticksUntilGold = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -48,7 +49,8 @@ export class FarmlandExecution implements Execution {
       this.player = this.farmland.owner();
     }
 
-    // Generate gold every 500-1000 ticks
+    // Generate gold every 160-330 ticks
+    if (!this.game) return;
     const ticksSinceLastGold = ticks - this.lastGoldGeneration;
     if (ticksSinceLastGold >= this.ticksUntilGold) {
       const goldAmount = this.game.config().farmlandGoldAmount();

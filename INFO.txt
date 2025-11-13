@@ -6,6 +6,6 @@ NewsModal.ts => Release Notes - (src/client/NewsModal.ts)
 GameStartingModal.ts => Loading Screen when entering a round - (src/client/GameStartingModal.ts)
 
 
-
+In Defaultconfig.ts (src/core/configuration/DefaultConfig.ts) alle Zahlen für einnahmen usw.
 
 PublicLobby.ts => Special Events - (src/client/PublicLobby.ts)
