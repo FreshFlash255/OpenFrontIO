@@ -312,19 +312,19 @@ export class DefaultConfig implements Config {
   }
 
   farmlandRange(): number {
-    return 80;
+    return 20;
   }
 
   farmlandGoldAmount(): Gold {
-    return 10_000n;
+    return 25_000n;
   }
 
   farmlandGoldIntervalMin(): number {
-    return 160;
+    return 100;
   }
 
   farmlandGoldIntervalMax(): number {
-    return 330;
+    return 125;
   }
 
   farmlandDefenseBonus(): number {
