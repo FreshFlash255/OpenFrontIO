@@ -110,6 +110,7 @@ export function structureSpawnTileValue(
           case UnitType.Factory:
           case UnitType.MissileSilo:
           case UnitType.Port:
+          case UnitType.Farmland:
             protectTiles.add(unit.tile());
         }
       }
