@@ -556,6 +556,11 @@ export class DefaultConfig implements Config {
           territoryBound: false,
           experimental: true,
         };
+      case UnitType.Farmland:
+        return {
+          cost: () => 0n,
+          territoryBound: true,
+        };
       default:
         assertNever(type);
     }

@@ -15,7 +15,8 @@ export function structureSpawnTileValue(
   switch (type) {
     case UnitType.City:
     case UnitType.Factory:
-    case UnitType.MissileSilo: {
+    case UnitType.MissileSilo:
+    case UnitType.Farmland: {
       return (tile) => {
         let w = 0;
 
