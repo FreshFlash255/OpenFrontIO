@@ -311,6 +311,22 @@ export class DefaultConfig implements Config {
     return 30;
   }
 
+  farmlandRange(): number {
+    return 80;
+  }
+
+  farmlandGoldPerTick(): Gold {
+    return 50n;
+  }
+
+  farmlandDefenseBonus(): number {
+    return 1.1;
+  }
+
+  farmlandSpeedBonus(): number {
+    return 1.05;
+  }
+
   defensePostDefenseBonus(): number {
     return 5;
   }
@@ -558,8 +574,15 @@ export class DefaultConfig implements Config {
         };
       case UnitType.Farmland:
         return {
-          cost: () => 0n,
+          cost: this.costWrapper(
+            (numUnits: number) =>
+              Math.min(500_000, Math.pow(2, numUnits) * 75_000),
+            UnitType.Farmland,
+          ),
           territoryBound: true,
+          constructionDuration: this.instantBuild() ? 0 : 2 * 10,
+          upgradable: true,
+          maxHealth: 500,
         };
       default:
         assertNever(type);
@@ -684,6 +707,17 @@ export class DefaultConfig implements Config {
         if (dp.unit.owner() === defender) {
           mag *= this.defensePostDefenseBonus();
           speed *= this.defensePostSpeedBonus();
+          break;
+        }
+      }
+      for (const fl of gm.nearbyUnits(
+        tileToConquer,
+        gm.config().farmlandRange(),
+        UnitType.Farmland,
+      )) {
+        if (fl.unit.owner() === defender) {
+          mag *= this.farmlandDefenseBonus();
+          speed *= this.farmlandSpeedBonus();
           break;
         }
       }
