@@ -1,7 +1,6 @@
 import { LitElement, css, html } from "lit";
 import { resolveMarkdown } from "lit-markdown";
 import { customElement, property, query } from "lit/decorators.js";
-import changelog from "../../resources/changelog.md";
 import { translateText } from "../client/Utils";
 import "./components/baseComponents/Button";
 import "./components/baseComponents/Modal";
@@ -30,8 +29,16 @@ export class NewsModal extends LitElement {
     }
   };
 
-  @property({ type: String }) markdown = "Loading...";
+  // Hier trägst du manuell deinen Changelog ein (Markdown erlaubt)
+  private manualChangelog: string = `
+# 📰 Update v0.1
+**Released:** Nov. 2025
 
+### What's New?
+- Modded by CHTriple & FreshFlash
+`;
+
+  @property({ type: String }) markdown = this.manualChangelog;
   private initialized: boolean = false;
 
   static styles = css`
@@ -64,6 +71,19 @@ export class NewsModal extends LitElement {
     .news-content a:hover {
       color: #6fb3ff !important;
     }
+    o-button {
+      display: block;
+      margin: 1.5rem auto 0 auto; /* oben etwas Abstand, horizontal mittig */
+      width: 50%; /* kannst du anpassen, z. B. 40% oder 100% */
+      max-width: 250px; /* verhindert, dass er zu breit wird */
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      o-button {
+        width: 80%; /* auf kleineren Displays etwas breiter */
+      }
+    }
   `;
 
   render() {
@@ -82,15 +102,6 @@ export class NewsModal extends LitElement {
           </div>
         </div>
 
-        <div>
-          ${translateText("news.see_all_releases")}
-          <a
-            href="https://github.com/openfrontio/OpenFrontIO/releases"
-            target="_blank"
-            >${translateText("news.github_link")}</a
-          >.
-        </div>
-
         <o-button
           title=${translateText("common.close")}
           @click=${this.close}
@@ -103,22 +114,7 @@ export class NewsModal extends LitElement {
   public open() {
     if (!this.initialized) {
       this.initialized = true;
-      fetch(changelog)
-        .then((response) => (response.ok ? response.text() : "Failed to load"))
-        .then((markdown) =>
-          markdown
-            .replace(
-              /(?<!\()\bhttps:\/\/github\.com\/openfrontio\/OpenFrontIO\/pull\/(\d+)\b/g,
-              (_match, prNumber) =>
-                `[#${prNumber}](https://github.com/openfrontio/OpenFrontIO/pull/${prNumber})`,
-            )
-            .replace(
-              /(?<!\()\bhttps:\/\/github\.com\/openfrontio\/OpenFrontIO\/compare\/([\w.-]+)\b/g,
-              (_match, comparison) =>
-                `[${comparison}](https://github.com/openfrontio/OpenFrontIO/compare/${comparison})`,
-            ),
-        )
-        .then((markdown) => (this.markdown = markdown));
+      this.markdown = this.manualChangelog;
     }
     this.requestUpdate();
     this.modalEl?.open();
