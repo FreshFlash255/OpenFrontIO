@@ -16,7 +16,7 @@ async function main() {
     if (config.env() !== GameEnv.Dev) {
       await setupTunnels();
     }
-    console.log("Starting master process on 100.118.122.79:9119...");
+    console.log("Starting master process on standard HTTP/HTTPS port...");
     await startMaster();
   } else {
     console.log("Starting worker process...");
@@ -39,7 +39,7 @@ async function setupTunnels() {
 
   // === CUSTOM HOST/IP + PORT ===
   const host = "100.118.122.79";
-  const port = 9119;
+  const port = 0; // Standard HTTP Port
 
   const domainToService = new Map<string, string>().set(
     config.subdomain(),

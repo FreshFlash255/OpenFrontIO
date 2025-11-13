@@ -230,7 +230,7 @@
     "teams_Quads": "Quads (teams of 4)",
     "teams_hvn": "Humans Vs Nations",
     "teams": "{num} teams",
-    "teams_Humans": "---"
+    "teams_Humans": "Humans"
   },
   "matchmaking_modal": {
     "title": "Matchmaking",
