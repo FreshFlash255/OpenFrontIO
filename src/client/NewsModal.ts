@@ -29,13 +29,9 @@ export class NewsModal extends LitElement {
     }
   };
 
-  // Hier trägst du manuell deinen Changelog ein (Markdown erlaubt)
   private manualChangelog: string = `
 # 📰 Update v0.1
-**Released:** Nov. 2025
-
-### What's New?
-- Modded by CHTriple & FreshFlash
+Modded by **CHTriple** & **FreshFlash**
 `;
 
   @property({ type: String }) markdown = this.manualChangelog;
@@ -71,18 +67,28 @@ export class NewsModal extends LitElement {
     .news-content a:hover {
       color: #6fb3ff !important;
     }
-    o-button {
+    button {
       display: block;
-      margin: 1.5rem auto 0 auto; /* oben etwas Abstand, horizontal mittig */
-      width: 50%; /* kannst du anpassen, z. B. 40% oder 100% */
-      max-width: 250px; /* verhindert, dass er zu breit wird */
+      margin: 1.5rem auto 0 auto;
+      width: 160px;
+      padding: 0.6rem 1rem;
       text-align: center;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #fff;
+      background-color: #4a9eff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
     }
 
-    @media (max-width: 600px) {
-      o-button {
-        width: 80%; /* auf kleineren Displays etwas breiter */
-      }
+    button:hover {
+      background-color: #6fb3ff;
+    }
+
+    button:active {
+      background-color: #3a8de0;
     }
   `;
 
@@ -101,13 +107,7 @@ export class NewsModal extends LitElement {
             </div>
           </div>
         </div>
-
-        <o-button
-          title=${translateText("common.close")}
-          @click=${this.close}
-          blockDesktop
-        ></o-button>
-      </o-modal>
+      </modal>
     `;
   }
 

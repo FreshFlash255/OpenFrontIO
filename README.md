@@ -1,12 +1,12 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="resources/images/OpenFrontLogoDark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="resources/images/OpenFrontLogo.svg">
-    <img src="resources/images/OpenFrontLogo.svg" alt="OpenFrontIO Logo" width="300">
+    <img src="resources/images/bf-logo.png" alt="BackFront Logo" width="300">
   </picture>
 </p>
 
 ---
+
+## Credits
 
 [OpenFront.io](https://openfront.io/) is an online real-time strategy game focused on territorial control and alliance building. Players compete to expand their territory, build structures, and form strategic alliances in various maps based on real-world geography.
 This is a fork/rewrite of WarFront.io. Credit to https://github.com/WarFrontIO.
