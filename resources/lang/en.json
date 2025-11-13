@@ -311,7 +311,8 @@
     "atom_bomb": "Atom Bomb",
     "hydrogen_bomb": "Hydrogen Bomb",
     "mirv": "MIRV",
-    "factory": "Factory"
+    "factory": "Factory",
+    "farmland": "Farmland"
   },
   "user_setting": {
     "title": "User Settings",
