@@ -266,6 +266,8 @@ export interface UnitParamsMap {
 
   [UnitType.Factory]: Record<string, never>;
 
+  [UnitType.Farmland]: Record<string, never>;
+
   [UnitType.MissileSilo]: Record<string, never>;
 
   [UnitType.DefensePost]: Record<string, never>;
