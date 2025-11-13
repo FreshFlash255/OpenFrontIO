@@ -152,7 +152,9 @@ export interface Config {
   safeFromPiratesCooldownMax(): number;
   defensePostRange(): number;
   farmlandRange(): number;
-  farmlandGoldPerTick(): Gold;
+  farmlandGoldAmount(): Gold;
+  farmlandGoldIntervalMin(): number;
+  farmlandGoldIntervalMax(): number;
   farmlandDefenseBonus(): number;
   farmlandSpeedBonus(): number;
   SAMCooldown(): number;

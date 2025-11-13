@@ -315,8 +315,16 @@ export class DefaultConfig implements Config {
     return 80;
   }
 
-  farmlandGoldPerTick(): Gold {
-    return 50n;
+  farmlandGoldAmount(): Gold {
+    return 200n;
+  }
+
+  farmlandGoldIntervalMin(): number {
+    return 500;
+  }
+
+  farmlandGoldIntervalMax(): number {
+    return 1000;
   }
 
   farmlandDefenseBonus(): number {

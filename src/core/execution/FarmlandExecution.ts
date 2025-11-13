@@ -5,6 +5,9 @@ export class FarmlandExecution implements Execution {
   private farmland: Unit | null = null;
   private active: boolean = true;
   private game: Game;
+  private ticksUntilGold: number = 0;
+  private lastGoldGeneration: number = 0;
+
   constructor(
     private player: Player,
     private tile: TileRef,
@@ -12,6 +15,15 @@ export class FarmlandExecution implements Execution {
 
   init(mg: Game, ticks: number): void {
     this.game = mg;
+    // Set initial random interval
+    this.setNextGoldInterval();
+    this.lastGoldGeneration = ticks;
+  }
+
+  private setNextGoldInterval(): void {
+    const min = this.game.config().farmlandGoldIntervalMin();
+    const max = this.game.config().farmlandGoldIntervalMax();
+    this.ticksUntilGold = Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   tick(ticks: number): void {
@@ -23,6 +35,9 @@ export class FarmlandExecution implements Execution {
         return;
       }
       this.farmland = this.player.buildUnit(UnitType.Farmland, spawnTile, {});
+      // Set initial interval when farmland is built
+      this.setNextGoldInterval();
+      this.lastGoldGeneration = ticks;
     }
     if (!this.farmland.isActive()) {
       this.active = false;
@@ -33,10 +48,15 @@ export class FarmlandExecution implements Execution {
       this.player = this.farmland.owner();
     }
 
-    // Generate gold per tick
-    const goldPerTick = this.game.config().farmlandGoldPerTick();
-    if (goldPerTick > 0n) {
-      this.player.addGold(goldPerTick, this.farmland.tile());
+    // Generate gold every 500-1000 ticks
+    const ticksSinceLastGold = ticks - this.lastGoldGeneration;
+    if (ticksSinceLastGold >= this.ticksUntilGold) {
+      const goldAmount = this.game.config().farmlandGoldAmount();
+      if (goldAmount > 0n) {
+        this.player.addGold(goldAmount, this.farmland.tile());
+      }
+      this.lastGoldGeneration = ticks;
+      this.setNextGoldInterval();
     }
   }
 
